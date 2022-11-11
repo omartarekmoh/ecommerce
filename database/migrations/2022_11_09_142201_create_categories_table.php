@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->string('slug');
+            $table->json('title');
+            $table->json('description');
             $table->integer('status')->default(0)->comment("0 is published 1 is unpublished");
             $table->timestamps();
         });

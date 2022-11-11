@@ -50,8 +50,8 @@ class ProductController extends Controller
       $category = Product::create([
          'title' => $request->title,
          'description' => $request->description,
-         'category_id' => $request->category,
-         'sub_category_id' => $request->subcategory,
+         'category_id' => $request->category_id,
+         'sub_category_id' => $request->sub_category_id,
          // 'attribute_id' => $request->attribute_id,
          'price' => $request->price,
          'discount' => $request->discount,

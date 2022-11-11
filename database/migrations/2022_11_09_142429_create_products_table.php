@@ -18,11 +18,10 @@ return new class extends Migration
             $table->foreignId("category_id")->constrained()->cascadeOnDelete();
             $table->foreignId("sub_category_id")->constrained()->cascadeOnDelete();
             // $table->foreignId("attribute_id")->constrained()->cascadeOnDelete();
-            $table->string("title");
+            $table->json("title");
             $table->integer("price");
-            $table->string("slug");
             $table->integer("discount");
-            $table->text("description");
+            $table->json("description");
             $table->integer("stock");
             $table->integer('status')->default(0)->comment("0 is published 1 is inactive");
 

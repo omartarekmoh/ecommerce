@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-   use HasFactory, sluggable;
+   use HasFactory, HasTranslations;
 
    protected $fillable = [
       'title',
@@ -21,19 +23,9 @@ class Product extends Model
       'status'
    ];
 
-   public function sluggable(): array
-   {
-      return [
-         'slug' => [
-            'source' => 'title'
-         ]
-      ];
-   }
+   public $translatable = ['title', 'description'];
 
-   public function getRouteKeyName()
-   {
-      return 'slug';
-   }
+   
 
    public function image()
    {
@@ -52,6 +44,6 @@ class Product extends Model
 
    public function scopeStatusName()
    {
-      return $this->status == 0 ? "Published" : "Inactive";
+      return $this->status == 0 ? "published" : "inactive";
    }
 }

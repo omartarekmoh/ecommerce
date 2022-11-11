@@ -13,7 +13,7 @@
 
 
 @section('toolbar')
-<x-board.main.toolbar :pages="['Products']"></x-board.main.toolbar>
+<x-board.main.toolbar :pages="[__('board.product.name')]"></x-board.main.toolbar>
 @endsection
 
 @section("content")
@@ -39,14 +39,14 @@
                </span>
                <!--end::Svg Icon-->
                <input type="text" data-kt-ecommerce-product-filter="search"
-                  class="form-control form-control-solid w-250px ps-14" placeholder="Search Product" />
+                  class="form-control form-control-solid w-250px ps-14" placeholder="{{ __("board.product.search") }}" />
             </div>
             <!--end::Search-->
          </div>
          <!--end::Card title-->
          <!--begin::Card toolbar-->
          <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-            <div class="w-100 mw-150px">
+            {{-- <div class="w-100 mw-150px">
                <!--begin::Select2-->
                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
                   data-placeholder="Status" data-kt-ecommerce-product-filter="status">
@@ -57,9 +57,9 @@
                   <option value="inactive">Inactive</option>
                </select>
                <!--end::Select2-->
-            </div>
+            </div> --}}
             <!--begin::Add product-->
-            <a href="{{ route("product.create") }}" class="btn btn-primary">Add Product</a>
+            <a href="{{ route("product.create") }}" class="btn btn-primary">{{ __("board.product.add") }}</a>
             <!--end::Add product-->
          </div>
          <!--end::Card toolbar-->
@@ -79,12 +79,12 @@
                            data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                      </div>
                   </th>
-                  <th class="min-w-200px">Product</th>
-                  <th class="text-end min-w-100px">Qty</th>
-                  <th class="text-end min-w-100px">Price</th>
-                  <th class="text-end min-w-100px">Rating</th>
-                  <th class="text-end min-w-100px">Status</th>
-                  <th class="text-end min-w-70px">Actions</th>
+                  <th class="min-w-200px">{{ __("board.product.name") }}</th>
+                  <th class="text-end min-w-100px">{{ __("board.product.stock") }}</th>
+                  <th class="text-end min-w-100px">{{ __("board.product.price") }}</th>
+                  <th class="text-end min-w-100px">{{ __("board.product.rating") }}</th>
+                  <th class="text-end min-w-100px">{{ __("board.product.status") }}</th>
+                  <th class="text-end min-w-70px">{{ __('board.product.actions') }}</th>
                </tr>
                <!--end::Table row-->
             </thead>
@@ -106,14 +106,14 @@
                   <td>
                      <div class="d-flex align-items-center">
                         <!--begin::Thumbnail-->
-                        <a href="{{ route("product.edit", $product->slug) }}" class="symbol symbol-50px">
+                        <a href="{{ route("product.edit", $product->id) }}" class="symbol symbol-50px">
                            <span class="symbol-label"
                               style="background-image:url({{ optional($product->image)->url() }}););"></span>
                         </a>
                         <!--end::Thumbnail-->
                         <div class="ms-5">
                            <!--begin::Title-->
-                           <a href="{{ route("product.edit", $product->slug) }}"
+                           <a href="{{ route("product.edit", $product->id) }}"
                               class="text-gray-800 text-hover-primary fs-5 fw-bold"
                               data-kt-ecommerce-product-filter="product_name">{{ $product->title }}</a>
                            <!--end::Title-->
@@ -203,14 +203,14 @@
                   <td class="text-end pe-0" data-order="Published">
                      <!--begin::Badges-->
                      <div class="badge badge-light-{{ $product->status == 0 ? "success" : "danger" }}">{{
-                        $product->statusname() }}</div>
+                        __("board.".$product->statusname()) }}</div>
                      <!--end::Badges-->
                   </td>
                   <!--end::Status=-->
                   <!--begin::Action=-->
                   <td class="text-end">
                      <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end">Actions
+                        data-kt-menu-placement="bottom-end">{{ __("board.product.actions") }}
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                         <span class="svg-icon svg-icon-5 m-0">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -228,18 +228,18 @@
                         data-kt-menu="true">
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <a href="{{ route("product.edit", $product->slug) }}"
-                              class="menu-link px-3">Edit</a>
+                           <a href="{{ route("product.edit", $product->id) }}"
+                              class="menu-link px-3">{{ __("board.edit") }}</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <form style="style: hidden;" action="{{ route('product.destroy', ['product' => $product->slug]) }}" id="delete_product_{{ $product->id }}" method="POST">
+                           <form style="style: hidden;" action="{{ route('product.destroy', ['product' => $product->id]) }}" id="delete_product_{{ $product->id }}" method="POST">
                               @csrf
                               @method("DELETE")
                            </form>
 
-                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_product_{{ $product->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">Delete</a>
+                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_product_{{ $product->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">{{ __("board.delete") }}</a>
 
                         </div>
                         <!--end::Menu item-->

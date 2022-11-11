@@ -25,7 +25,7 @@ class StoreSubCategory extends FormRequest
    public function rules()
    {
       return [
-         'title' => ['required', 'min:5'],
+         'title.*' => ['required', 'min:5'],
          'status' => ['required', Rule::in(['0', '1'])],
          'category_id' => ['required', 'exists:categories,id'],
          'avatar' => ['image', 'mimes:jpg,jpeg,png,gif,svg'],

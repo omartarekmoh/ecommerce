@@ -11,7 +11,7 @@
 <!--end::Vendors Javascript-->
 @endsection
 @section('toolbar')
-<x-board.main.toolbar :pages="['Categories']"></x-board.main.toolbar>
+<x-board.main.toolbar :pages="[__('board.category.name')]"></x-board.main.toolbar>
 @endsection
 
 @section("content")
@@ -36,7 +36,7 @@
                </span>
                <!--end::Svg Icon-->
                <input type="text" data-kt-ecommerce-category-filter="search"
-                  class="form-control form-control-solid w-250px ps-14" placeholder="Search Category" />
+                  class="form-control form-control-solid w-250px ps-14" placeholder="{{ __('board.category.search') }}" />
             </div>
             <!--end::Search-->
          </div>
@@ -44,7 +44,7 @@
          <!--begin::Card toolbar-->
          <div class="card-toolbar">
             <!--begin::Add customer-->
-            <a href="{{ route('category.create') }}" class="btn btn-primary">Add Category</a>
+            <a href="{{ route('category.create') }}" class="btn btn-primary">{{ __("board.category.add") }}</a>
             <!--end::Add customer-->
          </div>
          <!--end::Card toolbar-->
@@ -64,9 +64,9 @@
                            data-kt-check-target="#kt_ecommerce_category_table .form-check-input" value="1" />
                      </div>
                   </th>
-                  <th class="min-w-250px">Category</th>
-                  <th class="min-w-150px">Category Type</th>
-                  <th class="text-end min-w-70px">Actions</th>
+                  <th class="min-w-250px">{{ __("board.category.name") }}</th>
+                  <th class="min-w-150px">{{ __("board.category.type") }}</th>
+                  <th class="text-end min-w-70px">{{ __("board.category.actions") }}</th>
                </tr>
                <!--end::Table row-->
             </thead>
@@ -87,14 +87,14 @@
                   <td>
                      <div class="d-flex">
                         <!--begin::Thumbnail-->
-                        <a href="{{ route("category.edit", ['category'=> $category->slug]) }}" class="symbol
+                        <a href="{{ route("category.edit", ['category'=> $category->id]) }}" class="symbol
                            symbol-50px">
                            <span class="symbol-label"
                               style="background-image:url({{ optional($category->image)->url() }});"></span></a>
                         <!--end::Thumbnail-->
                         <div class="ms-5">
                            <!--begin::Title-->
-                           <a href="{{ route("category.edit", ['category'=> $category->slug]) }}"
+                           <a href="{{ route("category.edit", ['category'=> $category->id]) }}"
                               class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
                               data-kt-ecommerce-category-filter="category_name">{{ $category->title }}</a>
                            <!--end::Title-->
@@ -109,14 +109,14 @@
                   <td>
                      <!--begin::Badges-->
                      <div class="badge badge-light-{{ $category->status == 0 ? "success" : "danger" }}">{{
-                        $category->statusname() }}</div>
+                        __("board." . $category->statusname() )}}</div>
                      <!--end::Badges-->
                   </td>
                   <!--end::Type=-->
                   <!--begin::Action=-->
                   <td class="text-end">
                      <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end">Actions
+                        data-kt-menu-placement="bottom-end">{{ __("board.category.actions") }}
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                         <span class="svg-icon svg-icon-5 m-0">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -134,18 +134,18 @@
                         data-kt-menu="true">
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <a href="{{ route("category.edit", ['category'=> $category->slug]) }}"
-                              class="menu-link px-3">Edit</a>
+                           <a href="{{ route("category.edit", ['category'=> $category->id]) }}"
+                              class="menu-link px-3">{{ __("board.edit") }}</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <form style="style: hidden;" action="{{ route('category.destroy', ['category' => $category->slug]) }}" id="delete_category_{{ $category->id }}" method="POST">
+                           <form style="style: hidden;" action="{{ route('category.destroy', ['category' => $category->id]) }}" id="delete_category_{{ $category->id }}" method="POST">
                               @csrf
                               @method("DELETE")
                            </form>
 
-                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_category_{{ $category->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">Delete</a>
+                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_category_{{ $category->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">{{ __('board.delete') }}</a>
                         </div>
                         <!--end::Menu item-->
                      </div>

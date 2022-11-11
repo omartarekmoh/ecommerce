@@ -21,8 +21,17 @@ License: For each use you must have a valid license purchased only from above li
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-		<link href="{{  asset("assets/plugins/global/plugins.bundle.css") }}" rel="stylesheet" type="text/css" />
+      @if (LaravelLocalization::getCurrentLocale() == "en")
+      <link href="{{  asset("assets/plugins/global/plugins.bundle.css") }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset("assets/css/style.bundle.css") }}" rel="stylesheet" type="text/css" />
+      @else
+      <link href="{{  asset("assets/plugins/global/plugins.bundle.css") }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset("assets/css/style.bundle.css") }}" rel="stylesheet" type="text/css" />
+      
+      {{-- <link href="{{  asset("assets/plugins/global/plugins.bundle.rtl.css") }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset("assets/css/style.bundle.rtl.css") }}" rel="stylesheet" type="text/css" /> --}}
+      @endif
+		
 		<!--end::Global Stylesheets Bundle-->
 
       @yield('style')

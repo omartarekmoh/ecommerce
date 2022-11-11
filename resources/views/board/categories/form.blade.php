@@ -1,108 +1,12 @@
 
    <!--begin::Aside column-->
    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-      <!--begin::Thumbnail settings-->
-      <div class="card card-flush py-4">
-         <!--begin::Card header-->
-         <div class="card-header">
-            <!--begin::Card title-->
-            <div class="card-title">
-               <h2>Thumbnail</h2>
-            </div>
-            <!--end::Card title-->
-         </div>
-         <!--end::Card header-->
-         <!--begin::Card body-->
-         <div class="card-body text-center pt-0">
-            <!--begin::Image input-->
-            <!--begin::Image input placeholder-->
-            <style>
-               .image-input-placeholder {
-                  background-image: url("{{ optional($category->image ?? null)->url() ?? "assets/media/svg/files/blank-image.svg" }}");
-               }
-
-               [data-theme="dark"] .image-input-placeholder {
-                  background-image: url("{{ optional($category->image ?? null)->url() ?? "assets/media/svg/files/blank-image-dark.svg" }}");
-               }
-            </style>
-            <!--end::Image input placeholder-->
-            <!--begin::Image input-->
-            <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
-               data-kt-image-input="true">
-               <!--begin::Preview existing avatar-->
-               <div class="image-input-wrapper w-150px h-150px"></div>
-               <!--end::Preview existing avatar-->
-               <!--begin::Label-->
-               <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                  data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                  <!--begin::Icon-->
-                  <i class="bi bi-pencil-fill fs-7"></i>
-                  <!--end::Icon-->
-                  <!--begin::Inputs-->
-                  <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                  <input type="hidden" name="avatar_remove" />
-                  <!--end::Inputs-->
-               </label>
-               <!--end::Label-->
-               <!--begin::Cancel-->
-               <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                  data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                  <i class="bi bi-x fs-2"></i>
-               </span>
-               <!--end::Cancel-->
-               <!--begin::Remove-->
-               <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                  data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                  <i class="bi bi-x fs-2"></i>
-               </span>
-               <!--end::Remove-->
-            </div>
-            <!--end::Image input-->
-            <!--begin::Description-->
-            <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg and *.jpeg image files
-               are accepted</div>
-            <!--end::Description-->
-         </div>
-         <!--end::Card body-->
-      </div>
-      <!--end::Thumbnail settings-->
-      <!--begin::Status-->
-      <div class="card card-flush py-4">
-         <!--begin::Card header-->
-         <div class="card-header">
-            <!--begin::Card title-->
-            <div class="card-title">
-               <h2>Status</h2>
-            </div>
-            <!--end::Card title-->
-            <!--begin::Card toolbar-->
-            <div class="card-toolbar">
-               <div class="rounded-circle bg-success w-15px h-15px" id="kt_ecommerce_add_category_status"></div>
-            </div>
-            <!--begin::Card toolbar-->
-         </div>
-         <!--end::Card header-->
-         <!--begin::Card body-->
-         <div class="card-body pt-0">
-            <!--begin::Select2-->
-            <select name="status" class="form-select mb-2 @error("status") is-invalid @enderror" data-control="select2" data-hide-search="true"
-               data-placeholder="Select an option" id="kt_ecommerce_add_category_status_select">
-               <option value="0" {{ old("status", optional($category ?? null)->status) ? "selected" : "" }}>Published</option>
-               <option value="1" {{ old("status", optional($category ?? null)->status) ? "selected" : "" }}>Unpublished</option>
-            </select>
-            @error("status")
-            <div id="validationServer04Feedback" class="invalid-feedback">
-               {{ $message }}
-             </div>
-            @enderror
-            <!--end::Select2-->
-            <!--begin::Description-->
-            <div class="text-muted fs-7">Set the category status.</div>
-            <!--end::Description-->
-         </div>
-         <!--end::Card body-->
-      </div>
-      <!--end::Status-->
+      <x-board.form.thumbnail>{{ __("board.thumbnail_desc") }}</x-board.form.thumbnail>
+      
+      <x-board.form.status :show="true" name="status" head="{{ __('board.category.status') }}" desc="{{ __('board.category.status_desc') }}">
+         <option value="0" {{ old("status", optional($category ?? null)->status) ? "selected" : "" }}>{{ __('board.published') }}</option>
+         <option value="1" {{ old("status", optional($category ?? null)->status) ? "selected" : "" }}>{{ __('board.unpublished') }}</option>
+         </x-board.form.status>
 
    </div>
    <!--end::Aside column-->
@@ -113,63 +17,33 @@
          <!--begin::Card header-->
          <div class="card-header">
             <div class="card-title">
-               <h2>General</h2>
+               <h2>{{ __('board.general') }}</h2>
             </div>
          </div>
          <!--end::Card header-->
          <!--begin::Card body-->
          <div class="card-body pt-0">
-            <!--begin::Input group-->
-            <div class="mb-10 fv-row">
-               <!--begin::Label-->
-               <label class="required form-label">Category Name</label>
-               <!--end::Label-->
-               <!--begin::Input-->
-               <input type="text" name="title" class="form-control mb-2 @error('title') is-invalid @enderror" placeholder="Product name" value="{{ old("title", optional($category ?? null)->title) }}" />
-               @error('title')
-               <div id="validationServer03Feedback" class="invalid-feedback">
-                  {{ $message }}
-                </div>
-               @enderror
-               <!--end::Input-->
-               <!--begin::Description-->
-               <div class="text-muted fs-7">A description name is required and recommended to be unique.</div>
-               <!--end::Description-->
-            </div>
-            <!--end::Input group-->
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+            <x-board.form.input type="text" name="title" :localeCode="$localeCode" :table="$category ?? null" desc="{{ __('board.category.title_desc') }}">{{ __("board.category.title") }} {{ $properties['native'] }}</x-board.form.input>
+            @endforeach
 
-            <!--begin::Input group-->
-         <div class="mb-10 fv-row">
-            <!--begin::Label-->
-            <label class="required form-label">Description</label>
-            <!--end::Label-->
-            <!--begin::Input-->
-            <textarea name="description"
-               class="form-control mb-2 @error('description') is-invalid @enderror">{{ old("description", optional($category ?? null)->description) }}</textarea>
-               @error('description')
-               <div id="validationServer03Feedback" class="invalid-feedback">
-                  {{ $message }}
-                </div>
-               @enderror
-            <!--end::Input-->
-            <!--begin::Description-->
-            <div class="text-muted fs-7">Put a description for the category.</div>
-            <!--end::Description-->
-         </div>
-         <!--end::Input group-->
+
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+            <x-board.form.textarea name="description" :localeCode="$localeCode" :table="optional($category ?? null)" desc="{{ __('board.category.description_desc') }}">{{ __("board.category.description") }} {{ $properties['native'] }}</x-board.form.textarea>
+         @endforeach
+
+
          </div>
          <!--end::Card header-->
       </div>
       <!--end::General options-->
       <div class="d-flex justify-content-end">
          <!--begin::Button-->
-         <a href="{{ route("category.index") }}" class="btn btn-light me-5">Cancel</a>
+         <a href="{{ route("category.index") }}" class="btn btn-light me-5">{{ __('board.Cancel') }}</a>
          <!--end::Button-->
          <!--begin::Button-->
          <button type="submit" id="kt_ecommerce_add_category_submit" class="btn btn-primary">
-            <span class="indicator-label">Save Changes</span>
-            <span class="indicator-progress">Please wait...
-               <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            <span class="indicator-label">{{ __("board.save_changes") }}</span>
          </button>
          <!--end::Button-->
       </div>

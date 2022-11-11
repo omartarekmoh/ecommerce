@@ -2,26 +2,18 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Translatable\HasTranslations;
 
 class SubCategory extends Model
 {
-   use HasFactory, sluggable;
+   use HasFactory, HasTranslations;
 
    protected $fillable = ['title', 'status','category_id'];
 
-
-   public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
+   public $translatable = ['title'];
     
     public function getRouteKeyName()
 	{
@@ -30,7 +22,7 @@ class SubCategory extends Model
 
    public function scopeStatusName()
     {
-        return $this->status == 0 ? "Published" : "Unpublished";
+        return $this->status == 0 ? "published" : "unpublished";
     }
 
     public function image()

@@ -48,7 +48,7 @@ class SubCategoryController extends Controller
 
       $subcategory = SubCategory::create([
          'title' => $request->title,
-         'category_id' => $request->category,
+         'category_id' => $request->category_id,
          // 'user_id' => auth()->user()->id,
          'status' => $request->status,
       ]);

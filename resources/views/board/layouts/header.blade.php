@@ -85,7 +85,7 @@
                            </span>
                            <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Light</span>
+                        <span class="menu-title">{{ __("board.light") }}</span>
                      </a>
                   </div>
                   <!--end::Menu item-->
@@ -104,7 +104,7 @@
                            </span>
                            <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Dark</span>
+                        <span class="menu-title">{{ __("board.Dark") }}</span>
                      </a>
                   </div>
                   <!--end::Menu item-->
@@ -120,7 +120,7 @@
                            </span>
                            <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">System</span>
+                        <span class="menu-title">{{ __("board.system") }}</span>
                      </a>
                   </div>
                   <!--end::Menu item-->
@@ -158,7 +158,7 @@
                   <!--end::Menu separator-->
                   <!--begin::Menu item-->
                   <div class="menu-item px-5">
-                     <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                     <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">{{ __("board.my_profile") }}</a>
                   </div>
                   <!--end::Menu item-->
                   <!--begin::Menu separator-->
@@ -167,29 +167,23 @@
                   <!--begin::Menu item-->
                   <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
                      <a href="#" class="menu-link px-5">
-                        <span class="menu-title position-relative">Language
-                        <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                        <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset("assets/media/flags/united-states.svg") }}" alt="" /></span></span>
+                        <span class="menu-title position-relative">{{ __('board.language') }}
+                        <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ LaravelLocalization::getCurrentLocaleNative() }}
+                        <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset(LaravelLocalization::getCurrentLocale() == "ar" ? "assets/media/flags/saudi-arabia.svg" : "assets/media/flags/united-states.svg") }}" /></span></span>
                      </a>
                      <!--begin::Menu sub-->
                      <div class="menu-sub menu-sub-dropdown w-175px py-4">
+
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5 active">
+                           <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="menu-link d-flex px-5 active">
                            <span class="symbol symbol-20px me-4">
-                              <img class="rounded-1" src="{{ asset("assets/media/flags/united-states.svg") }}" alt="" />
-                           </span>English</a>
+                              <img class="rounded-1" src="{{ asset($localeCode == "ar" ? "assets/media/flags/saudi-arabia.svg" : "assets/media/flags/united-states.svg") }}" alt="" />
+                           </span>{{ $properties['native'] }}</a>
                         </div>
                         <!--end::Menu item-->
-                        
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                           <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5 active">
-                           <span class="symbol symbol-20px me-4">
-                              <img class="rounded-1" src="{{ asset("assets/media/flags/saudi-arabia.svg") }}" alt="" />
-                           </span>Arabic</a>
-                        </div>
-                        <!--end::Menu item-->
+                    @endforeach
                         
                      </div>
                      <!--end::Menu sub-->
@@ -197,7 +191,7 @@
                   <!--end::Menu item-->
                   <!--begin::Menu item-->
                   <div class="menu-item px-5">
-                     <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
+                     <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">{{ __("board.sign_out") }}</a>
                   </div>
                   <!--end::Menu item-->
                </div>

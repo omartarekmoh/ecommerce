@@ -16,7 +16,7 @@
 
 @section("content")
 <div id="kt_app_content_container" class="app-container container-xxl">
-   <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data" action="{{ route('subcategory.update', $subcategory->slug) }}" method="POST">
+   <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data" action="{{ route('subcategory.update', $subcategory->id) }}" method="POST">
       @csrf
       @method('PUT')
    @include("board.subcategories.form")

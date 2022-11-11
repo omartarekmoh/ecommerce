@@ -45,7 +45,7 @@
             <div class="menu-item pt-5">
                <!--begin:Menu content-->
                <div class="menu-content">
-                  <span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
+                  <span class="menu-heading fw-bold text-uppercase fs-7">{{ __("board.pages") }}</span>
                </div>
                <!--end:Menu content-->
             </div>
@@ -80,7 +80,7 @@
                      </span>
                      <!--end::Svg Icon-->
                   </span>
-                  <span class="menu-title">Categories</span>
+                  <span class="menu-title">{{ __("board.category.name") }}</span>
                   <span class="menu-arrow"></span>
                </span>
                <!--end:Menu link-->
@@ -93,7 +93,7 @@
                         <span class="menu-bullet">
                            <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Categories</span>
+                        <span class="menu-title">{{ __("board.category.name") }}</span>
                      </a>
                      <!--end:Menu link-->
                   </div>
@@ -106,7 +106,7 @@
                         <span class="menu-bullet">
                            <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Sub Categories</span>
+                        <span class="menu-title">{{ __("board.subcategory.name") }}</span>
                      </a>
                      <!--end:Menu link-->
                   </div>
@@ -144,7 +144,7 @@
                      </span>
                      <!--end::Svg Icon-->
                   </span>
-                  <span class="menu-title">Products</span>
+                  <span class="menu-title">{{ __("board.product.name") }}</span>
                   <span class="menu-arrow"></span>
                </span>
                <!--end:Menu link-->
@@ -157,7 +157,7 @@
                         <span class="menu-bullet">
                            <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Products</span>
+                        <span class="menu-title">{{ __("board.product.name") }}</span>
                      </a>
                      <!--end:Menu link-->
                   </div>

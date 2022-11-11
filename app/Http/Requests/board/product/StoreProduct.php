@@ -25,14 +25,14 @@ class StoreProduct extends FormRequest
     public function rules()
     {
       return [
-         'title' => ['required', 'min:5'],
-         'description' => ['required', 'min:10'],
+         'title.*' => ['required', 'min:5'],
+         'description.*' => ['required', 'min:10'],
          'status' => ['required', Rule::in(['0', '1'])],
          'category_id' => ['required', 'exists:categories,id'],
          'sub_category_id' => ['required', 'exists:sub_categories,id'],
          'price' => ['required', 'integer'],
          'discount' => ['nullable', 'integer'],
-         'discount' => ['required', 'integer'],
+         'stock' => ['required', 'integer'],
          'avatar' => ['image', 'mimes:jpg,jpeg,png,gif,svg'],
       ];
         
