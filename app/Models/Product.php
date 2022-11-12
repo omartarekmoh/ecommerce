@@ -5,6 +5,7 @@ namespace App\Models;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,12 +21,22 @@ class Product extends Model
       'price',
       'discount',
       'stock',
-      'status'
+      'status',
+      'gallery'
+   ];
+
+   protected $casts = [
+      'gallery' => 'array',
    ];
 
    public $translatable = ['title', 'description'];
 
-   
+   public function galleryUrl()
+   {
+      return collect($this->gallery)->map(function ($img) {
+         return Storage::url($img);
+      });
+   }
 
    public function image()
    {

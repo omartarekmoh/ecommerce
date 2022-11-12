@@ -93,6 +93,7 @@
             <tbody class="fw-semibold text-gray-600">
 
                @foreach ($products as $product)
+
                <!--begin::Table row-->
                <tr>
                   <!--begin::Checkbox-->

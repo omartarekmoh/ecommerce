@@ -6,7 +6,7 @@
    {{-- @dd(optional($table)->getTranslations($name, [$localeCode]) ?? "") --}}
    <!--begin::Input-->
    <input type="{{ $type }}" name='{{ isset($localeCode) ? $name."[{$localeCode}]" : $name }}' class="form-control mb-2 @error(isset($localeCode) ? $name.".{$localeCode}" : $name) is-invalid @enderror " placeholder="{{ $slot }}" value="{{ old(isset($localeCode) ? $name.".{$localeCode}" : $name, !isset($localeCode) ? optional($table ?? null)->$name : 
-   optional($table)->getTranslations($name, [$localeCode]))}}" />
+   optional($table)->getTranslations($name, [$localeCode])[$localeCode] ?? null)}}"  {{ $extra ?? "" }}/>
    
    @error(isset($localeCode) ? $name.".{$localeCode}" : $name)
    <div class="invalid-feedback">

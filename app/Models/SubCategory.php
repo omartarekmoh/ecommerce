@@ -15,11 +15,7 @@ class SubCategory extends Model
 
    public $translatable = ['title'];
     
-    public function getRouteKeyName()
-	{
-	    return 'slug';
-	}
-
+   
    public function scopeStatusName()
     {
         return $this->status == 0 ? "published" : "unpublished";

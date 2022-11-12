@@ -89,7 +89,8 @@ class SubCategoryController extends Controller
 
       $subcategory->update([
          'title' => $request->title,
-         'description' => $request->description,
+         'category_id' => $request->category_id,
+
          'status' => $request->status,
       ]);
 

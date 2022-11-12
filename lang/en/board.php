@@ -81,6 +81,7 @@ return [
       'search' => "Search Product",
       'add' => 'Add Product',
       'rating' => 'Rating',
+      'gallery' => "Gallery",
    ],
 
 ];

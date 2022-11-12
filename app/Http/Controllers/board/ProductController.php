@@ -47,7 +47,7 @@ class ProductController extends Controller
    {
       $request->validated();
 
-      $category = Product::create([
+      $product = Product::make([
          'title' => $request->title,
          'description' => $request->description,
          'category_id' => $request->category_id,
@@ -60,14 +60,29 @@ class ProductController extends Controller
          'status' => $request->status,
       ]);
 
+      $hasFile = $request->hasFile('gallery');
+      
+      $gallery = [];
+      
+      if ($hasFile) {
+         foreach($request->file('gallery') as $file) {
+            $gallery[] = $file->store('product/gallery');
+         } 
+
+         $product->gallery = $gallery;
+      }
+
+      $product->save();
+
       $hasFile = $request->hasFile('avatar');
 
       if ($hasFile) {
          $path = $request->file('avatar')->store('avatar/products');
-         $category->image()->save(
+         $product->image()->save(
             Image::make(['path' => $path])
          );
-      }
+      }   
+
       return redirect(route("product.index"))->withStatus("Category Added!");
    }
 
@@ -93,13 +108,14 @@ class ProductController extends Controller
     */
    public function update(StoreProduct $request, Product $product)
    {
+      // dd('adadad');
       $request->validated();
 
       $product->update([
          'title' => $request->title,
          'description' => $request->description,
-         'category_id' => $request->category,
-         'sub_category_id' => $request->subcategory,
+         'category_id' => $request->category_id,
+         'sub_category_id' => $request->sub_category_id,
          // 'attribute_id' => $request->attribute_id,
          'price' => $request->price,
          'discount' => $request->discount,

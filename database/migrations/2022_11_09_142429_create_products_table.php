@@ -19,8 +19,9 @@ return new class extends Migration
             $table->foreignId("sub_category_id")->constrained()->cascadeOnDelete();
             // $table->foreignId("attribute_id")->constrained()->cascadeOnDelete();
             $table->json("title");
+            $table->json("gallery")->nullable();
             $table->integer("price");
-            $table->integer("discount");
+            $table->integer("discount")->nullable();
             $table->json("description");
             $table->integer("stock");
             $table->integer('status')->default(0)->comment("0 is published 1 is inactive");

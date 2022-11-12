@@ -46,6 +46,8 @@
             <x-board.form.textarea name="description" :localeCode="$localeCode" :table="optional($product ?? null)" desc="{{ __('board.product.description_desc') }}">{{ __("board.product.description") }} {{ $properties['native'] }}</x-board.form.textarea>
          @endforeach
 
+         <x-board.form.input extra="multiple accept='.png, .jpg, .jpeg'" type="file" name="gallery[]"  :table="null" desc="{{ __('board.product.gallery') }}">{{ __("board.product.gallery") }}</x-board.form.input>
+
          <x-board.form.input type="text" name="price" error="price" :table="$product ?? null" desc="{{ __('board.product.price_desc') }}">{{ __("board.product.price") }}</x-board.form.input>
 
          <x-board.form.input type="text" name="discount" :table="optional($product ?? null)" desc="{{ __('board.product.discount_desc') }}">{{ __("board.product.discount") }}</x-board.form.input>

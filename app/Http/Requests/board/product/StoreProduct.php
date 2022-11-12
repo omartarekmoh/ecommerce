@@ -34,6 +34,7 @@ class StoreProduct extends FormRequest
          'discount' => ['nullable', 'integer'],
          'stock' => ['required', 'integer'],
          'avatar' => ['image', 'mimes:jpg,jpeg,png,gif,svg'],
+         'gallery.*' => ['image', 'mimes:jpg,jpeg,png,gif,svg'],
       ];
         
     }
