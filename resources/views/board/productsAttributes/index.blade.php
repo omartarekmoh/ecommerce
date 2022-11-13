@@ -7,8 +7,10 @@
 
 @section('script')
 <script src="{{ asset("assets/plugins/custom/datatables/datatables.bundle.js") }}"></script>
+<script src="{{ asset("assets/js/custom/apps/ecommerce/catalog/products.js") }}"></script>
 
 <script src="{{ asset("assets/js/custom/apps/ecommerce/catalog/categories.js") }}"></script>
+
 {{-- <script src="{{ asset("assets/js/widgets.bundle.js") }}"></script> --}}
 {{-- <script src="{{ asset("assets/js/custom/widgets.js") }}"></script> --}}
 {{-- <script src="{{ asset("assets/js/custom/apps/chat") }}/chat.js"></script> --}}
@@ -18,7 +20,7 @@
 @endsection
 
 @section('toolbar')
-<x-board.main.toolbar :pages="[__('board.subcategory.name')]"></x-board.main.toolbar>
+<x-board.main.toolbar :pages="[__('board.product_attribute.name')]"></x-board.main.toolbar>
 @endsection
 
 @section("content")
@@ -43,7 +45,7 @@
                </span>
                <!--end::Svg Icon-->
                <input type="text" data-kt-ecommerce-category-filter="search"
-                  class="form-control form-control-solid w-250px ps-14" placeholder="{{ __("board.subcategory.search") }}" />
+                  class="form-control form-control-solid w-250px ps-14" placeholder="{{ __("board.product_attribute.search") }}" />
             </div>
             <!--end::Search-->
          </div>
@@ -51,7 +53,7 @@
          <!--begin::Card toolbar-->
          <div class="card-toolbar">
             <!--begin::Add customer-->
-            <a href="{{ route('subcategory.create') }}" class="btn btn-primary">{{ __("board.subcategory.add") }}</a>
+            <a href="{{ route('product-attribute.create') }}" class="btn btn-primary">{{ __("board.product_attribute.add") }}</a>
             <!--end::Add customer-->
          </div>
          <!--end::Card toolbar-->
@@ -72,16 +74,15 @@
                            data-kt-check-target="#kt_ecommerce_category_table .form-check-input" value="1" />
                      </div>
                   </th>
-                  <th class="min-w-250px">{{ __("board.subcategory.name") }}</th>
-                  <th class="min-w-150px">{{ __("board.subcategory.type") }}</th>
-                  <th class="text-end min-w-70px">{{ __("board.category.actions") }}</th>
+                  <th class="min-w-250px">{{ __("board.product_attribute.name") }}</th>
+                  <th class="text-end min-w-70px">{{ __("board.product_attribute.actions") }}</th>
                </tr>
                <!--end::Table row-->
             </thead>
             <!--end::Table head-->
             <!--begin::Table body-->
             <tbody class="fw-semibold text-gray-600">
-               @foreach ($subcategories as $subcategory)
+               @foreach ($productAttributes as $productAttribute)
                <!--begin::Table row-->
                <tr>
                   <!--begin::Checkbox-->
@@ -94,38 +95,22 @@
                   <!--begin::Category=-->
                   <td>
                      <div class="d-flex">
-                        <!--begin::Thumbnail-->
-                        <a href="{{ route("subcategory.edit", ['subcategory'=> $subcategory->id]) }}" class="symbol
-                           symbol-50px">
-                           <span class="symbol-label"
-                              style="background-image:url({{ optional($subcategory->image)->url() }});"></span></a>
-                        <!--end::Thumbnail-->
                         <div class="ms-5">
                            <!--begin::Title-->
-                           <a href="{{ route("subcategory.edit", ['subcategory'=> $subcategory->id]) }}"
+                           <a href="{{ route("product-attribute.edit", $productAttribute->id) }}"
                               class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
-                              data-kt-ecommerce-category-filter="category_name">{{ $subcategory->title }}</a>
+                              data-kt-ecommerce-category-filter="category_name">{{ $productAttribute->name }}</a>
                            <!--end::Title-->
-                           <!--begin::Description-->
-                           <div class="text-muted fs-7 fw-bold">{{ $subcategory->description }}</div>
-                           <!--end::Description-->
                         </div>
                      </div>
                   </td>
                   <!--end::Category=-->
-                  <!--begin::Type=-->
-                  <td>
-                     {{-- {{ $category->statusname()  }} --}}
-                     <!--begin::Badges-->
-                     <div class="badge badge-light-{{ $subcategory->status == 0 ? "success" : "danger" }}">{{
-                        __("board." . $subcategory->statusname()) }}</div>
-                     <!--end::Badges-->
-                  </td>
-                  <!--end::Type=-->
+            
+                
                   <!--begin::Action=-->
                   <td class="text-end">
                      <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click"
-                        data-kt-menu-placement="bottom-end">{{ __("board.subcategory.actions") }}
+                        data-kt-menu-placement="bottom-end">{{ __("board.product_attribute.actions") }}
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                         <span class="svg-icon svg-icon-5 m-0">
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -143,18 +128,18 @@
                         data-kt-menu="true">
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <a href="{{ route("subcategory.edit", ['subcategory'=> $subcategory->id]) }}"
+                           <a href="{{ route("product-attribute.edit", $productAttribute->id) }}"
                               class="menu-link px-3">{{ __("board.edit") }}</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                           <form style="style: hidden;" action="{{ route('subcategory.destroy', ['subcategory' => $subcategory->id]) }}" id="delete_subcategory_{{ $subcategory->id }}" method="POST">
+                           <form style="style: hidden;" action="{{ route('product-attribute.destroy', $productAttribute->id) }}" id="delete_product_attribute_{{ $productAttribute->id }}" method="POST">
                               @csrf
                               @method("DELETE")
                            </form>
 
-                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_subcategory_{{ $subcategory->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">{{ __("board.delete") }}</a>
+                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_product_attribute_{{ $productAttribute->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">{{ __("board.delete") }}</a>
                         </div>
                         <!--end::Menu item-->
                      </div>

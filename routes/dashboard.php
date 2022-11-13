@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\board\ProductController;
 use App\Http\Controllers\board\CategoryController;
+use App\Http\Controllers\board\productAttributeController;
 use App\Http\Controllers\board\SubCategoryController;
 
 /*
@@ -30,5 +31,6 @@ Route::group(
       Route::resource('category', CategoryController::class)->except(['show']);
       Route::resource('subcategory', SubCategoryController::class)->except(['show']);
       Route::resource('product', ProductController::class)->except(['show']);
+      Route::resource('product-attribute', productAttributeController::class)->except(['show']);
    }
 );

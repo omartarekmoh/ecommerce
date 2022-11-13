@@ -160,6 +160,14 @@
                         <span class="menu-title">{{ __("board.product.name") }}</span>
                      </a>
                      <!--end:Menu link-->
+                      <!--begin:Menu link-->
+                      <a class="menu-link" href="{{ route("product-attribute.index") }}">
+                        <span class="menu-bullet">
+                           <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">{{ __("board.product_attribute.name") }}</span>
+                     </a>
+                     <!--end:Menu link-->
                   </div>
                   <!--end:Menu item-->
                </div>

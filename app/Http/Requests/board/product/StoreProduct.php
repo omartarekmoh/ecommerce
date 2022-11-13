@@ -27,6 +27,8 @@ class StoreProduct extends FormRequest
       return [
          'title.*' => ['required', 'min:5'],
          'description.*' => ['required', 'min:10'],
+         'attribute_name.*' => ['required'],
+         'attribute_value.*' => ['required'],
          'status' => ['required', Rule::in(['0', '1'])],
          'category_id' => ['required', 'exists:categories,id'],
          'sub_category_id' => ['required', 'exists:sub_categories,id'],

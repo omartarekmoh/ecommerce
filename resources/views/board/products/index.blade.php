@@ -1,14 +1,20 @@
 @extends("board.layouts.app")
-@section("style")
-<!--begin::Vendor Stylesheets(used for this page only)-->
-<link href="{{ asset(" assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet" type="text/css" />
-<!--end::Vendor Stylesheets-->
+@section('style')
+<link href="{{ asset("assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet" type="text/css" />
 @endsection
 
-@section("script")
-<!--begin::Vendors Javascript(used for this page only)-->
-<script src="{{ asset(" assets/plugins/custom/datatables/datatables.bundle.js") }}"></script>
-<!--end::Vendors Javascript-->
+@section('script')
+<script src="{{ asset("assets/plugins/custom/datatables/datatables.bundle.js") }}"></script>
+<script src="{{ asset("assets/js/custom/apps/ecommerce/catalog/products.js") }}"></script>
+
+<script src="{{ asset("assets/js/custom/apps/ecommerce/catalog/categories.js") }}"></script>
+
+{{-- <script src="{{ asset("assets/js/widgets.bundle.js") }}"></script> --}}
+{{-- <script src="{{ asset("assets/js/custom/widgets.js") }}"></script> --}}
+{{-- <script src="{{ asset("assets/js/custom/apps/chat") }}/chat.js"></script> --}}
+{{-- <script src="{{ asset("assets/js/custom/utilities/modals/upgrade-plan.js") }}"></script> --}}
+{{-- <script src="{{ asset("assets/js/custom/utilities/modals/create-app.js") }}"></script> --}}
+{{-- <script src="{{ asset("assets/js/custom/utilities/modals/users-search.js") }}"></script> --}}
 @endsection
 
 
@@ -17,9 +23,8 @@
 @endsection
 
 @section("content")
-<!--begin::Content container-->
 <div id="kt_app_content_container" class="app-container container-xxl">
-   <!--begin::Products-->
+   <!--begin::Category-->
    <div class="card card-flush">
       <!--begin::Card header-->
       <div class="card-header align-items-center py-5 gap-2 gap-md-5">
@@ -38,37 +43,26 @@
                   </svg>
                </span>
                <!--end::Svg Icon-->
-               <input type="text" data-kt-ecommerce-product-filter="search"
+               <input type="text" data-kt-ecommerce-category-filter="search"
                   class="form-control form-control-solid w-250px ps-14" placeholder="{{ __("board.product.search") }}" />
             </div>
             <!--end::Search-->
          </div>
          <!--end::Card title-->
          <!--begin::Card toolbar-->
-         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-            {{-- <div class="w-100 mw-150px">
-               <!--begin::Select2-->
-               <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                  data-placeholder="Status" data-kt-ecommerce-product-filter="status">
-                  <option></option>
-                  <option value="all">All</option>
-                  <option value="published">Published</option>
-                  <option value="scheduled">Scheduled</option>
-                  <option value="inactive">Inactive</option>
-               </select>
-               <!--end::Select2-->
-            </div> --}}
-            <!--begin::Add product-->
-            <a href="{{ route("product.create") }}" class="btn btn-primary">{{ __("board.product.add") }}</a>
-            <!--end::Add product-->
+         <div class="card-toolbar">
+            <!--begin::Add customer-->
+            <a href="{{ route('product.create') }}" class="btn btn-primary">{{ __("board.product.add") }}</a>
+            <!--end::Add customer-->
          </div>
          <!--end::Card toolbar-->
       </div>
       <!--end::Card header-->
+
       <!--begin::Card body-->
       <div class="card-body pt-0">
          <!--begin::Table-->
-         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_products_table">
+         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
             <!--begin::Table head-->
             <thead>
                <!--begin::Table row-->
@@ -76,7 +70,7 @@
                   <th class="w-10px pe-2">
                      <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                         <input class="form-check-input" type="checkbox" data-kt-check="true"
-                           data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
+                           data-kt-check-target="#kt_ecommerce_category_table .form-check-input" value="1" />
                      </div>
                   </th>
                   <th class="min-w-200px">{{ __("board.product.name") }}</th>
@@ -258,7 +252,6 @@
       </div>
       <!--end::Card body-->
    </div>
-   <!--end::Products-->
+   <!--end::Category-->
 </div>
-<!--end::Content container-->
 @endsection

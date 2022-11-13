@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Storage;
+use App\DataTables\board\SubCategoryDataTable;
 use App\Http\Requests\board\subcategory\StoreSubCategory;
 
 class SubCategoryController extends Controller
@@ -19,7 +20,7 @@ class SubCategoryController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function index()
+   public function index(SubCategoryDataTable $dataTable)
    {
       $subcategories = SubCategory::latest()->get();
       return view("board.subcategories.index", compact('subcategories'));

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Yajra\DataTables\DataTablesServiceProvider;
 
 return [
 

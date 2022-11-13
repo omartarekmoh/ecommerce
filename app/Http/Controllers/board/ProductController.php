@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\board\product\StoreProduct;
+use App\Models\AttributeValue;
 use App\Models\Category;
+use App\Models\ProductAttribute;
 use App\Models\SubCategory;
+use Attribute;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -34,7 +37,8 @@ class ProductController extends Controller
    {
       $categories = Category::all();
       $subcategories = SubCategory::all();
-      return view("board.products.create", compact('subcategories', 'categories'));
+      $productAttributes = ProductAttribute::all();
+      return view("board.products.create", compact('subcategories', 'categories', 'productAttributes'));
    }
 
    /**
@@ -82,6 +86,14 @@ class ProductController extends Controller
             Image::make(['path' => $path])
          );
       }   
+
+      foreach($request->attribute_name as $index => $att) {
+         AttributeValue::create([
+            'value' => $request->attribute_value[$index],
+            'product_attribute_id' => $att,
+            'product_id' => $product->id,
+         ]);
+      }
 
       return redirect(route("product.index"))->withStatus("Category Added!");
    }
