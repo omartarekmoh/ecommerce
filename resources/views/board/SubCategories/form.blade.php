@@ -2,7 +2,7 @@
    <!--begin::Aside column-->
    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
       
-      <x-board.form.thumbnail>{{ __("board.thumbnail_desc") }}</x-board.form.thumbnail>
+      <x-board.form.thumbnail :model="$subcategory ?? null">{{ __("board.thumbnail_desc") }}</x-board.form.thumbnail>
 
 
       <x-board.form.status :show="true" name="status" head="{{ __('board.category.status') }}" desc="{{ __('board.category.status_desc') }}">
@@ -13,7 +13,7 @@
 
       <x-board.form.status name="category_id" head="{{ __('board.category.name') }}" desc="{{ __('board.category.status_desc') }}">
       @foreach ($categories as $index => $category)
-      <option value="{{ $category->id }}">{{ $category->title }}</option>
+      <option value="{{ $category->id }}"  {{ optional($subcategory ?? null)->category->id == $category->id ? "selected" : ""  }}>{{ $category->title }}</option>
       @endforeach
       </x-board.form.status>
    </div>

@@ -1,7 +1,7 @@
 
    <!--begin::Aside column-->
    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-      <x-board.form.thumbnail>{{ __("board.thumbnail_desc") }}</x-board.form.thumbnail>
+      <x-board.form.thumbnail :model="$category ?? null">{{ __("board.thumbnail_desc") }}</x-board.form.thumbnail>
       
       <x-board.form.status :show="true" name="status" head="{{ __('board.category.status') }}" desc="{{ __('board.category.status_desc') }}">
          <option value="0" {{ old("status", optional($category ?? null)->status) ? "selected" : "" }}>{{ __('board.published') }}</option>

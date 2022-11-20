@@ -21,7 +21,7 @@
    <div class="card-body pt-0">
       <!--begin::Select2-->
       <select name="{{ $name }}" class="form-select mb-2 @error($name) is-invalid @enderror" data-control="select2" data-hide-search="true"
-         data-placeholder="Select an option" id="kt_ecommerce_add_category_status_select">
+         data-placeholder="Select an option" id="kt_ecommerce_add_category_status_select" {{ $extra ?? "" }}>
          {{ $slot }}
       </select>
 

@@ -10,7 +10,7 @@
 
 
 @section('toolbar')
-<x-board.main.toolbar :pages="[__('board.productAttribute.name'), __('board.create')]"></x-board.main.toolbar>
+<x-board.main.toolbar :pages="[__('board.attribute.name'), __('board.create')]"></x-board.main.toolbar>
 @endsection
 
 @section("content")

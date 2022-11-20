@@ -25,8 +25,9 @@ class StoreCategory extends FormRequest
    public function rules()
    {
       $category = $this->route('category') ?? null;
+      
       return [
-         'title.*' => ['required', 'min:5', 'unique:categories,title,' . optional($category)->id],
+         'title.*' => ['required', 'min:5',],
          'description.*' => ['required', 'min:10'],
          'status' => ['required', Rule::in(['0', '1'])],
          'avatar' => ['image', 'mimes:jpg,jpeg,png,gif,svg'],

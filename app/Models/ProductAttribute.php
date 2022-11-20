@@ -14,4 +14,9 @@ class ProductAttribute extends Model
 
    public $translatable = ['name'];
 
+   public function attributeValue()
+   {
+      return $this->hasMany(AttributeValue::class);
+   }
+
 }

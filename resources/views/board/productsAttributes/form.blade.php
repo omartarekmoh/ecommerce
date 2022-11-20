@@ -12,7 +12,7 @@
       <!--begin::Card body-->
       <div class="card-body pt-0">
          @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-            <x-board.form.input type="text" name="name" :localeCode="$localeCode" :table="$productAttribute ?? null" desc="{{ __('board.productAttribute.title_desc') }}">{{ __("board.productAttribute.title") }} {{ $properties['native'] }}</x-board.form.input>
+            <x-board.form.input type="text" name="name" :localeCode="$localeCode" :table="$productAttribute ?? null" desc="{{ __('board.attribute.title_desc') }}">{{ __("board.attribute.title") }} {{ $properties['native'] }}</x-board.form.input>
             @endforeach
 
 

@@ -154,7 +154,7 @@
                               @method("DELETE")
                            </form>
 
-                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_subcategory_{{ $subcategory->id }}').submit(); " data-kt-ecommerce-category-filter="delete_row">{{ __("board.delete") }}</a>
+                           <a class="menu-link px-3" onclick="event.preventDefault(); document.getElementById('delete_subcategory_{{ $subcategory->id }}').submit(); ">{{ __("board.delete") }}</a>
                         </div>
                         <!--end::Menu item-->
                      </div>

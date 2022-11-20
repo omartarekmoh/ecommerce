@@ -11,7 +11,7 @@
 
 
 @section('toolbar')
-<x-board.main.toolbar :pages="[__('board.productAttribute.title_desc'), __('board.edit')]"></x-board.main.toolbar>
+<x-board.main.toolbar :pages="[__('board.attribute.name'), __('board.edit')]"></x-board.main.toolbar>
 @endsection
 
 @section("content")

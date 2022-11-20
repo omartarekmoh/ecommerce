@@ -16,11 +16,11 @@
       <!--begin::Image input placeholder-->
       <style>
          .image-input-placeholder {
-            background-image: url("{{ optional($subcategory->image ?? null)->url() ?? "assets/media/svg/files/blank-image.svg" }}");
+            background-image: url("{{ optional($model->image ?? null)->url() ?? "assets/media/svg/files/blank-image.svg" }}");
          }
 
          [data-theme="dark"] .image-input-placeholder {
-            background-image: url("{{ optional($subcategory->image ?? null)->url() ?? "assets/media/svg/files/blank-image-dark.svg" }}");
+            background-image: url("{{ optional($model->image ?? null)->url() ?? "assets/media/svg/files/blank-image-dark.svg" }}");
          }
       </style>
       <!--end::Image input placeholder-->

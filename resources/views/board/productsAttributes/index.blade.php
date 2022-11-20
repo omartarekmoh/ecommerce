@@ -20,7 +20,7 @@
 @endsection
 
 @section('toolbar')
-<x-board.main.toolbar :pages="[__('board.product_attribute.name')]"></x-board.main.toolbar>
+<x-board.main.toolbar :pages="[__('board.attribute.name')]"></x-board.main.toolbar>
 @endsection
 
 @section("content")
@@ -45,7 +45,7 @@
                </span>
                <!--end::Svg Icon-->
                <input type="text" data-kt-ecommerce-category-filter="search"
-                  class="form-control form-control-solid w-250px ps-14" placeholder="{{ __("board.product_attribute.search") }}" />
+                  class="form-control form-control-solid w-250px ps-14" placeholder="{{ __("board.attribute.search") }}" />
             </div>
             <!--end::Search-->
          </div>
@@ -53,7 +53,7 @@
          <!--begin::Card toolbar-->
          <div class="card-toolbar">
             <!--begin::Add customer-->
-            <a href="{{ route('product-attribute.create') }}" class="btn btn-primary">{{ __("board.product_attribute.add") }}</a>
+            <a href="{{ route('product-attribute.create') }}" class="btn btn-primary">{{ __("board.attribute.add") }}</a>
             <!--end::Add customer-->
          </div>
          <!--end::Card toolbar-->
@@ -74,8 +74,9 @@
                            data-kt-check-target="#kt_ecommerce_category_table .form-check-input" value="1" />
                      </div>
                   </th>
-                  <th class="min-w-250px">{{ __("board.product_attribute.name") }}</th>
-                  <th class="text-end min-w-70px">{{ __("board.product_attribute.actions") }}</th>
+                  <th class="min-w-250px">{{ __("board.attribute.name") }}</th>
+                  <th class="min-w-250px"></th>
+                  <th class="text-end min-w-70px">{{ __("board.attribute.actions") }}</th>
                </tr>
                <!--end::Table row-->
             </thead>
@@ -92,6 +93,7 @@
                      </div>
                   </td>
                   <!--end::Checkbox-->
+                 
                   <!--begin::Category=-->
                   <td>
                      <div class="d-flex">
@@ -105,7 +107,9 @@
                      </div>
                   </td>
                   <!--end::Category=-->
-            
+                  <td>
+                     
+                  </td>
                 
                   <!--begin::Action=-->
                   <td class="text-end">

@@ -87,12 +87,17 @@ class ProductController extends Controller
          );
       }   
 
-      foreach($request->attribute_name as $index => $att) {
-         AttributeValue::create([
-            'value' => $request->attribute_value[$index],
-            'product_attribute_id' => $att,
-            'product_id' => $product->id,
-         ]);
+      // dd($request->attribute_name);
+
+      if(isset($request->attribute_name)) {
+         foreach($request->attribute_name as $index => $att) {
+            AttributeValue::create([
+               'value' => $request->attribute_value[$index],
+               'product_attribute_id' => $att,
+               'product_id' => $product->id,
+            ]);
+      }
+      
       }
 
       return redirect(route("product.index"))->withStatus("Category Added!");
@@ -106,9 +111,12 @@ class ProductController extends Controller
     */
    public function edit(Product $product)
    {
+      // dd($product->attributeValue);
       $categories = Category::all();
       $subcategories = SubCategory::all();
-      return view("board.products.edit", compact('product', 'categories', 'subcategories'));
+      $productAttributes = ProductAttribute::all();
+      $attributeValues = $product->attributeValue;
+      return view("board.products.edit", compact('product', 'categories', 'subcategories', 'productAttributes', 'attributeValues'));
    }
 
    /**
